@@ -10,7 +10,7 @@ class IFWLSTSVM:
     #     self.k = k
     #     self.sigma = sigma
     #     self.w1, self.b1 = None, None
-    #     self.w2, self.b2 = None, None
+    #     self.w2, self.b2 = None, No,ne
     #     self.X_train = None
 
     def __init__(self, kernel, gamma = 1, c1 = None, c2 = None, c3 = None, c4 = None):
@@ -121,6 +121,10 @@ class IFWLSTSVM:
         # Corresponds to linear_W_interclass_weights.m
         X1 = X[y == 1]
         X_neg = X[y == -1]
+
+        # Separate data into two classes
+        A1 = X[X[:, -1] == 1]  # Class 1
+        B1 = X[X[:, -1] != 1]  # Other classes
 
         # For class +1
         nn = NearestNeighbors(n_neighbors=self.k + 1).fit(X1)
